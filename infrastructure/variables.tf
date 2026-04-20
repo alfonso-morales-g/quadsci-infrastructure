@@ -1,6 +1,6 @@
 variable "bucket_name" {
   default = null
-  type = string
+  type    = string
 }
 
 variable "project_id" {
@@ -50,12 +50,12 @@ variable "firewall_rules" {
 variable "instance_configuration" {
   default = null
   type = map(object({
-    name = string
-    image = string
-    enable_oslogin = string
+    name                    = string
+    image                   = string
+    enable_oslogin          = string
     metadata_startup_script = optional(string)
-    subnetwork = string
-    tags = list(string)
+    subnetwork              = string
+    tags                    = list(string)
   }))
-  
+
 }

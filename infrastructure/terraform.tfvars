@@ -1,5 +1,9 @@
+# General configuration
+
 project_id = "project-2c7de5d4-3a78-4c31-b62"
 region     = "us-central1"
+
+# Networking configuration
 
 vpc_name = "quadsci-vpc"
 
@@ -90,23 +94,21 @@ firewall_rules = {
   }
 }
 
+# Compute instances configuration
 instance_configuration = {
   "development-instance" = {
-    name = "development-instance"
-    image = "debian-cloud/debian-12"
+    name           = "development-instance"
+    image          = "debian-cloud/debian-12"
     enable_oslogin = "TRUE"
-    subnetwork = "development-subnetwork"
-    tags = ["webproject","dev"]
-  },  
+    subnetwork     = "development-subnetwork"
+    tags           = ["webproject", "dev"]
+  },
   "webapp-instance" = {
-    name = "webapp-instance"
-    image = "projects/cos-cloud/global/images/family/cos-113-lts"
-    enable_oslogin = "FALSE"
-    subnetwork = "webapp-subnetwork"
+    name                    = "webapp-instance"
+    image                   = "projects/cos-cloud/global/images/family/cos-113-lts"
+    enable_oslogin          = "FALSE"
+    subnetwork              = "webapp-subnetwork"
     metadata_startup_script = "docker run -d -p 8080:8080 gcr.io/google-samples/hello-app:1.0"
-    tags = ["webproject"]
+    tags                    = ["webproject"]
   }
 }
-
-
-bucket_name = "terraform-state-bucket-alfonsomorales"

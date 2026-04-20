@@ -11,8 +11,8 @@ module "networks" {
 module "instances" {
   source = "git::https://github.com/alfonso-morales-g/quadsci-terraform-modules.git//instances?ref=master"
 
-  vpc_name       = var.vpc_name
+  vpc_name               = var.vpc_name
   instance_configuration = var.instance_configuration
 
-  depends_on = [ module.networks ]
+  depends_on = [module.networks]
 }
