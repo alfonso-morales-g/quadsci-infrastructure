@@ -1,7 +1,7 @@
 # General configuration
 
-# project_id = "project-2c7de5d4-3a78-4c31-b62"
-project_id = "quadsci-cloud-tha-alfonso"
+project_id = "project-2c7de5d4-3a78-4c31-b62"
+# project_id = "quadsci-cloud-tha-alfonso"
 region     = "us-central1"
 
 # Networking configuration
