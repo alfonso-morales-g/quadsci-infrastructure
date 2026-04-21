@@ -1,6 +1,7 @@
 # General configuration
 
-project_id = "project-2c7de5d4-3a78-4c31-b62"
+# project_id = "project-2c7de5d4-3a78-4c31-b62"
+project_id = "quadsci-cloud-tha-alfonso"
 region     = "us-central1"
 
 # Networking configuration
@@ -89,6 +90,7 @@ firewall_rules = {
     }]
 
     deny_rules         = []
+    # Identity Aware Proxy Tunnel
     source_ranges      = ["35.235.240.0/20"]
     destination_ranges = []
     target_tags        = ["dev"]
