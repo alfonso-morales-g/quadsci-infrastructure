@@ -59,3 +59,8 @@ variable "instance_configuration" {
   }))
 
 }
+
+variable "nat_gateway_attach_instance" {
+  default = null
+  type    = string
+}

@@ -47,7 +47,7 @@ firewall_rules = {
     source_ranges      = ["0.0.0.0/0"]
     destination_ranges = []
     target_tags        = ["webapp", "dev"]
-    priority           = 1000
+    priority           = 5
   },
 
   "allow-icmp" = {
@@ -62,7 +62,7 @@ firewall_rules = {
     source_tags        = ["webapp", "dev"]
     destination_ranges = []
     target_tags        = ["dev", "webapp"]
-    priority           = 100
+    priority           = 4
   },
 
   "allow-private-http" = {
@@ -89,7 +89,7 @@ firewall_rules = {
       ports    = [22]
     }]
 
-    deny_rules         = []
+    deny_rules = []
     # Identity Aware Proxy Tunnel
     source_ranges      = ["35.235.240.0/20"]
     destination_ranges = []
@@ -97,6 +97,9 @@ firewall_rules = {
     priority           = 1
   }
 }
+
+# Selector for the instance that will use the NAT Gateway (dev or webapp)
+nat_gateway_attach_instance = "webapp"
 
 # Compute instances configuration
 instance_configuration = {
