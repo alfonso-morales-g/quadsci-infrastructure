@@ -21,7 +21,7 @@ subnetworks = {
 
 firewall_rules = {
   "allow-egress" = {
-    name      = "allow-egress-1"
+    name      = "quadsci-allow-egress"
     direction = "EGRESS"
     allow_rules = [{
       protocol = "tcp"
@@ -29,14 +29,15 @@ firewall_rules = {
     }]
 
     deny_rules         = []
-    source_ranges      = null
+    source_ranges      = ["192.168.2.0/24"]
+    source_tags        = null
     destination_ranges = ["0.0.0.0/0"]
+    target_tags        = null
     priority           = 3
-    target_tags        = ["webproject"]
   },
 
   "deny-ingress" = {
-    name        = "deny-ingress-1"
+    name        = "quadsci-deny-ingress"
     direction   = "INGRESS"
     allow_rules = []
     deny_rules = [{
@@ -44,26 +45,27 @@ firewall_rules = {
     }]
     source_ranges      = ["0.0.0.0/0"]
     destination_ranges = []
+    target_tags        = ["webapp", "dev"]
     priority           = 1000
-    target_tags        = ["webproject"]
   },
 
   "allow-icmp" = {
-    name      = "allow-icmp-1"
+    name      = "quadsci-allow-icmp"
     direction = "INGRESS"
     allow_rules = [{
       protocol = "icmp"
     }]
 
     deny_rules         = []
-    source_ranges      = ["192.168.1.0/24", "192.168.2.0/24"]
+    source_ranges      = []
+    source_tags        = ["webapp", "dev"]
     destination_ranges = []
+    target_tags        = ["dev", "webapp"]
     priority           = 100
-    target_tags        = ["webproject"]
   },
 
   "allow-private-http" = {
-    name      = "allow-private-http-1"
+    name      = "quadsci-allow-private-http"
     direction = "INGRESS"
     allow_rules = [{
       protocol = "tcp",
@@ -71,15 +73,15 @@ firewall_rules = {
     }]
 
     deny_rules         = []
-    priority           = 2
-    destination_ranges = null
     source_ranges      = null
     source_tags        = ["dev"]
-    target_tags        = ["webproject"]
+    destination_ranges = null
+    target_tags        = ["webapp"]
+    priority           = 2
   },
 
   "allow-private-ssh" = {
-    name      = "allow-private-ssh-1"
+    name      = "quadsci-allow-private-ssh"
     direction = "INGRESS"
     allow_rules = [{
       protocol = "tcp",
@@ -89,8 +91,8 @@ firewall_rules = {
     deny_rules         = []
     source_ranges      = ["35.235.240.0/20"]
     destination_ranges = []
-    priority           = 1
     target_tags        = ["dev"]
+    priority           = 1
   }
 }
 
@@ -101,7 +103,7 @@ instance_configuration = {
     image          = "debian-cloud/debian-12"
     enable_oslogin = "TRUE"
     subnetwork     = "development-subnetwork"
-    tags           = ["webproject", "dev"]
+    tags           = ["dev"]
   },
   "webapp-instance" = {
     name                    = "webapp-instance"
@@ -109,6 +111,6 @@ instance_configuration = {
     enable_oslogin          = "FALSE"
     subnetwork              = "webapp-subnetwork"
     metadata_startup_script = "docker run -d -p 8080:8080 gcr.io/google-samples/hello-app:1.0"
-    tags                    = ["webproject"]
+    tags                    = ["webapp"]
   }
 }
