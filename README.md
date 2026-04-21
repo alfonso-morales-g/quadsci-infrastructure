@@ -22,8 +22,8 @@ curl webapp-instance.c.quadsci-cloud-tha-alfonso.internal:8080
 gcloud projects list
 
   # Change project
-gcloud config set project quadsci-cloud-tha-alfonso
 gcloud config set project project-2c7de5d4-3a78-4c31-b62
+gcloud config set project quadsci-cloud-tha-alfonso
 
   # Application login
 gcloud auth application-default login
